@@ -116,24 +116,24 @@ export async function createJob(data: z.infer<typeof jobSchema>) {
     return redirect("/");
   }
 
-  let stripeCustomerId = company.user.stripeCustomerId;
-  if (!stripeCustomerId) {
-    const customer = await stripe.customers.create({
-      email: user.email as string,
-      name: user.name as string,
-    });
+  // let stripeCustomerId = company.user.stripeCustomerId;
+  // if (!stripeCustomerId) {
+  //   const customer = await stripe.customers.create({
+  //     email: user.email as string,
+  //     name: user.name as string,
+  //   });
 
-    stripeCustomerId = customer.id;
+  //   stripeCustomerId = customer.id;
 
-    await prisma.user.update({
-      where: {
-        id: user.id,
-      },
-      data: {
-        stripeCustomerId: customer.id,
-      },
-    });
-  }
+  //   await prisma.user.update({
+  //     where: {
+  //       id: user.id,
+  //     },
+  //     data: {
+  //       stripeCustomerId: customer.id,
+  //     },
+  //   });
+  // }
 
   const newJob = await prisma.job.create({
     data: {
