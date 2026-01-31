@@ -116,7 +116,7 @@ export async function createJob(data: z.infer<typeof jobSchema>) {
     return redirect("/");
   }
 
-  // let stripeCustomerId = company.user.stripeCustomerId;
+  const stripeCustomerId = company.user.stripeCustomerId ?? undefined;
   // if (!stripeCustomerId) {
   //   const customer = await stripe.customers.create({
   //     email: user.email as string,
